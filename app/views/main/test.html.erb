@@ -1,25 +1,16 @@
 <h1>Main#test</h1>
 <p>Find me in app/views/main/test.html.erb</p>
+
+
 <%= form_with url: "/main/calculate", method: "post", data:{turbo: false} do|form| %>
-
-<%= form.label :subject, "ชื่อวิชา 1" %>
-<%= form.text_field :subject1, size: "60x10" %>
-<%= form.label :point, "คะแนนที่ได้ 1" %>
-<%= form.number_field :point1 %>
-<br>
-<%= form.label :subject, "ชื่อวิชา 2" %>
-<%= form.text_field :subject2, size: "60x10" %>
-<%= form.label :point, "คะแนนที่ได้ 2" %>
-<%= form.number_field :point2 %>
-
-<br>
-<%= form.label :subject, "ชื่อวิชา 3" %>
-<%= form.text_field :subject3, size: "60x10" %>
-<%= form.label :point, "คะแนนที่ได้ 3" %>
-<%= form.number_field :point3 %>
-
-<br>
-
+<%= hidden_field_tag(:round,@round) %>
+<% @round.to_i.times{ |i| %>
+    <label for="subject[name]"> subject <%= i+1 %> </label>
+    <input type="text" name="subject[name][]" value="">
+    <label for="subject[score]"> score <%= i+1 %> </label>
+    <input type="number" name="subject[score][]" value="">
+    <br>
+<% }%>
 <%= form.submit %>
 <% end %>
 
