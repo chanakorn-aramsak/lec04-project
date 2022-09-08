@@ -20,7 +20,9 @@ class MainController < ApplicationController
         redirect_to controller: "main", action: "test", round: params[:round]
       end
     end
-    @max_number = scores.max()
+    max_number = scores.max()
+    index_of_max_number = scores.rindex(max_number)
+    @subject_of_max = names[index_of_max_number]
     @sum_number = scores.sum
     
   end 
